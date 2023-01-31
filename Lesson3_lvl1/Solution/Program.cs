@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 
 class Program
 {
@@ -190,20 +191,67 @@ class Program
             return false;
         }
 
+        static bool Check(Fraction A, Fraction B)
+        {
+            if ((A.denominator) == 0 & (B.denominator) == 0)
+            {
+                Console.WriteLine("Знаменатель не должен равняться 0");
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public Task3()
     {
         bool state = true;
+        bool check = true; 
         Fraction A, B;
+        A.numerator = 0;
+        A.denominator = 0;
+        B.numerator = 0;
+        B.denominator = 0;
         while (state)
         {
             
         
         Console.WriteLine("Введите поочередно числитель и знаменатель дроби 1");
         A.numerator = Convert.ToInt32(Console.ReadLine());
-        A.denominator = Convert.ToInt32(Console.ReadLine());
+        while (check)
+        {
+            A.denominator = Convert.ToInt32(Console.ReadLine());
+            if (A.denominator == 0)
+            {
+                Console.WriteLine("Знаменатель не должен равняться 0");
+                Console.WriteLine("Введите его еще раз");
+                check = true;
+            }
+            else
+            {
+                check = false;
+            }
+        }
+        check = true;
         Console.WriteLine("Введите поочередно числитель и знаменатель дроби 2");
         B.numerator = Convert.ToInt32(Console.ReadLine());
-        B.denominator = Convert.ToInt32(Console.ReadLine());
+        while (check)
+        {
+            B.denominator = Convert.ToInt32(Console.ReadLine());
+            if (B.denominator == 0)
+            {
+                Console.WriteLine("Знаменатель не должен равняться 0");
+                Console.WriteLine("Введите его еще раз");
+                check = true;
+            }
+            else
+            {
+                check = false;
+            }
+        }
+
+        
+
         
 
         Console.WriteLine("Какое действие вы хотетие совершить над дробями?\n1.Сложение\n2.Вычитание\n3.Умножение\n4.Деление");
